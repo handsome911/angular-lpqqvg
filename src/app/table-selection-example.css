@@ -31,3 +31,13 @@ th.mat-sort-header-sorted {
 .example-button-row .mat-button-base {
   margin: 8px 16px 8px 0;
 }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}

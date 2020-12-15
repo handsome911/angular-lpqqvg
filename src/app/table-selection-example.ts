@@ -1,7 +1,10 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 export interface PeriodicElement {
   position: number;
@@ -48,6 +51,7 @@ const ELEMENT_DATA_SIP: TrunkElement[] = [
   {position: 8, trunkName: '',           trunkNumber: '+380990007039'},
   {position: 9, trunkName: '',           trunkNumber: '+380990007030'},
 ];
+
 /**
  * @title Table with selection
  */
@@ -56,7 +60,7 @@ const ELEMENT_DATA_SIP: TrunkElement[] = [
   styleUrls: ['table-selection-example.css'],
   templateUrl: 'table-selection-example.html',
 })
-export class TableSelectionExample implements AfterViewInit {
+export class TableSelectionExample implements AfterViewInit, OnInit{
 
   hide = true;
 
@@ -119,6 +123,32 @@ export class TableSelectionExample implements AfterViewInit {
     applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  //Autocomplete feature
+
+  myControl = new FormControl();
+  options: string[] = ELEMENT_DATA_SIP.map(function(item) { 
+    return (item.trunkName + ' (' + item.trunkNumber +')').trim();
+  }); //['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+
+  ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  displayFn(user?: PeriodicElement): string | undefined {
+    return user ? user.trunk : undefined;
   }
 
 }
