@@ -1,7 +1,15 @@
 
+<h3 class="b-card__title b-card__title_white">
+  Lifecell FMC
+</h3>
+
 <mat-tab-group mat-align-tabs="start">
-  <mat-tab label="Users">
+  <mat-tab>
    
+    <ng-template mat-tab-label>
+      <span matBadge="7" matBadgeOverlap="false">FMC Users</span>
+    </ng-template>
+
     <mat-form-field>
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="type name or number" #input>
@@ -53,8 +61,22 @@
     </table>
     </div>
 
+    <!-- buttons -->
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">
+        Add
+      </button>
+      <button mat-raised-button color="primary"
+          matBadge="3" matBadgePosition="before" matBadgeColor="accent">
+        Delete
+      </button>
+    </div>
+
   </mat-tab>
-  <mat-tab label="Operator trunks">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span matBadge="10" matBadgeOverlap="false">Operator trunks</span>
+    </ng-template>
     
     <div class="example-container">
 
@@ -96,13 +118,13 @@
 
         <!-- trunkName Column -->
         <ng-container matColumnDef="trunkName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let element"> {{element.trunkName}} </td>
         </ng-container>
 
         <!-- trunkNumber Column -->
         <ng-container matColumnDef="trunkNumber">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Number </th>
+          <th mat-header-cell *matHeaderCellDef> Number </th>
           <td mat-cell *matCellDef="let element"> {{element.trunkNumber}} </td>
         </ng-container>
 
@@ -111,6 +133,17 @@
             (click)="selection.toggle(row)">
         </tr>
       </table>
+    </div>
+
+    <!-- buttons -->
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">
+        Add
+      </button>
+      <button mat-raised-button color="primary"
+          matBadge="3" matBadgePosition="before" matBadgeColor="accent">
+        Delete
+      </button>
     </div>
 
   </mat-tab>

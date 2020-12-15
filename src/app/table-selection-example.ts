@@ -1,5 +1,6 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
 export interface PeriodicElement {
@@ -15,7 +16,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 2, name: 'Lithium (305)',   number: '+380991005305', trunk: 'sales (+380991005002)'},
   {position: 3, name: 'Beryllium (306)', number: '+380991005306', trunk: 'sales (+380991005002)'},
   {position: 4, name: 'Boron',           number: '',              trunk: ''},
-  {position: 5, name: 'Carbon',          number: '+380991005306', trunk: 'ERROR. SELECT BILLING'},
+  {position: 5, name: 'Carbon',          number: '+380991005306', trunk: '(+380990007036)'},
   {position: 6, name: 'Fluorine',        number: '',              trunk: ''},
   {position: 7, name: 'Nitrogen (501)',  number: '+380991007777', trunk: 'logistics (+380999999999)'},
   {position: 8, name: 'Oxygen (502)',    number: '+380991007778', trunk: 'logistics (+380999999999)'},
@@ -55,7 +56,7 @@ const ELEMENT_DATA_SIP: TrunkElement[] = [
   styleUrls: ['table-selection-example.css'],
   templateUrl: 'table-selection-example.html',
 })
-export class TableSelectionExample {
+export class TableSelectionExample implements AfterViewInit {
 
   hide = true;
 
@@ -67,6 +68,12 @@ export class TableSelectionExample {
   dataSourceSip = new MatTableDataSource<TrunkElement>(ELEMENT_DATA_SIP);
   selectionSip = new SelectionModel<TrunkElement>(true, []);
   
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    /**this.dataSourceSip.sort = this.sort;*/
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -107,6 +114,11 @@ export class TableSelectionExample {
       return `${this.isAllSelectedSip() ? 'select' : 'deselect'} all`;
     }
     return `${this.selectionSip.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+    applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

@@ -1,3 +1,10 @@
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
 .example-table-container {
   position: relative;
   max-height: 500px;
@@ -8,7 +15,19 @@ table {
   width: 100%;
 }
 
+th.mat-sort-header-sorted {
+  color: black;
+}
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+}
+
+.example-button-row {
+  display: table-cell;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 16px 8px 0;
 }
