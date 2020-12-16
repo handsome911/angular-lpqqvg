@@ -110,7 +110,28 @@
       <button mat-raised-button color="primary"
           matBadge="3" matBadgePosition="after" matBadgeColor="accent">
         Apply changes
+       
       </button>
+
+
+  <mat-form-field>
+    <input matInput
+           [name]="trunkSelect"
+           
+           type="text"
+           placeholder="Pick a trunk"
+           aria-label="trunk"
+        [formControl]="myControl"
+           [matAutocomplete]="auto"
+           >
+           <!--  -->
+    <mat-autocomplete #auto="matAutocomplete" >
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
     </div>
 
   </mat-tab>
@@ -133,7 +154,6 @@
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
-
     </div>
 
     <div class="example-table-container">
@@ -188,6 +208,7 @@
           matBadge="1" matBadgePosition="after" matBadgeColor="accent">
         Apply changes
       </button>
+
     </div>
 
   </mat-tab>

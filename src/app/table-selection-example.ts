@@ -14,8 +14,8 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 0, name: 'Hydrogen (201)',  number: '+380991005201', trunk: 'main (+380991005001)'},
-  {position: 1, name: 'Helium (202)',    number: '+380991005202', trunk: 'main (+380991005001)'},
+  {position: 0, name: 'Hydrogen (201)',  number: '+380991005201', trunk: 'основной (+380991005001)'},
+  {position: 1, name: 'Helium (202)',    number: '+380991005202', trunk: 'основной (+380991005001)'},
   {position: 2, name: 'Lithium (305)',   number: '+380991005305', trunk: 'sales (+380991005002)'},
   {position: 3, name: 'Beryllium (306)', number: '+380991005306', trunk: 'sales (+380991005002)'},
   {position: 4, name: 'Boron',           number: '',              trunk: ''},
@@ -40,7 +40,7 @@ export interface TrunkElement {
 
 
 const ELEMENT_DATA_SIP: TrunkElement[] = [
-  {position: 0, trunkName: 'main',       trunkNumber: '+380991005001'},
+  {position: 0, trunkName: 'основной',       trunkNumber: '+380991005001'},
   {position: 1, trunkName: 'sales',      trunkNumber: '+380991005002'},
   {position: 2, trunkName: 'logistics',  trunkNumber: '+380999999999'},
   {position: 3, trunkName: '',           trunkNumber: '+380990007034'},
